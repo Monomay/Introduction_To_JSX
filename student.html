@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student details</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body{
+            background-color: rgb(105, 221, 211);
+        }
+        #main{
+            display: flex;
+            justify-content: center;
+        }
+        table,
+        th,
+        td {
+            padding: 40px;
+            border: 1px solid red;
+            background-color: black;
+            color: white;
+        }
+        h1{
+            text-decoration: underline;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    function Student() {
+        const stu = [{
+            name: "Mono",
+            age: 23,
+            marks: 50
+        },
+        {
+            name: "Debu",
+            age: 21,
+            marks: 70
+        },
+        {
+            name: "Som",
+            age: 22,
+            marks: 70
+        },
+        ];
+
+        return (
+            <>
+                <h1>Student Details</h1>
+                <div id="main">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Marks</th>
+                        </tr>
+                        {stu.map((student, index) =>
+                            <tr key={index}>
+                                <td>{student.name}</td>
+                                <td>{student.age}</td>
+                                <td>{student.marks}</td>
+                            </tr>
+                        )}
+                    </tbody>
+                    </table>
+                </div>
+            </>
+        )
+    }
+
+    const App = () => {
+        const itemsSold = [
+          { id: 1, name: "iPhone 14", price: 1200, qty: 22 },
+          { id: 2, name: "iPad Pro", price: 800, qty: 18 },
+          { id: 3, name: "Macbook Air", price: 1500, qty: 7 },
+          { id: 4, name: "Samsung S23", price: 1100, qty: 16 },
+          { id: 5, name: "Dell Inspiron 5590", price: 1200, qty: 5 }
+        ];
+
+        return (
+          <>
+            <h1>Record of sold items</h1>
+            <div>
+            <table>
+            <thead>
+            	<tr>
+                	<th>Id</th>
+                    <th>Name</th>
+                    <th>Selling price</th>
+                    <th>Quentity</th>
+        		</tr>
+        	</thead>
+          <tbody>
+            {itemsSold.map((sold,index) =>
+                  <tr key={index}>
+                	  <td>{sold.id}</td>
+                    <td>{sold.name}</td>
+                    <td>{sold.price}</td>
+                    <td>{sold.qty}</td>
+                  </tr>
+                )}
+              </tbody>
+        	
+            <tfoot>
+            	<tr>
+                	<td>Total Revenue</td>
+                	<td colSpan={3}>
+                    ${itemsSold.reduce((n, i) => n + i.price, 0)}
+                  </td>
+        		</tr>
+            </tfoot>
+        </table>
+        </div>
+          </>
+        );
+      };
+
+
+    ReactDOM.createRoot(document.getElementById("root")).render(
+        <>
+            <Student />
+            <App />
+        </>
+    );
+</script>
+
+</html>

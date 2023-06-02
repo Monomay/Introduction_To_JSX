@@ -1,0 +1,52 @@
+<html>
+<header>
+    <title>Hello World</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script> -->
+
+</header>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+<script type="text/babel">
+    function Sum(){
+        const a = 10+5;
+        return a;
+    }
+
+    const header = <h2>jsx expression</h2>
+
+    function App() {
+        const name = "JSX";
+        const age = 24;
+        const demo = null;
+        const undef = undefined;
+        const bool = true;
+        return (
+            <>
+                <h1>Lets strted  {name}</h1>
+                {header}
+                <h2>your age is {age}</h2>
+                <h3>Null value: {demo}</h3>
+                <h4>Undefined value: {undef}</h4>
+                <h5>Boolean value: {bool.toString()}</h5>
+                <p>calling function {Sum()}</p>
+            </>
+        )
+    };
+
+    ReactDOM.createRoot(document.getElementById("root")).render(
+        <>
+            <App />
+        </>
+    )
+</script>
+
+</html>

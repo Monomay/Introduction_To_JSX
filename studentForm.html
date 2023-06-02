@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stduent Form</title>
+
+    <style>
+        table{
+            margin: 10px 20px;
+        }
+    </style>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+
+
+let storeData = [];
+let inpRef = React.createRef();
+let Marks = React.createRef();
+const handle = (e) => {
+    e.preventDefault();
+
+    let obj = {
+        name: inpRef.current.value,
+        Marks: Marks.current.value,
+    }
+
+    storeData = [
+        ...storeData,obj
+    ]
+    console.log(storeData)
+    rootElement.render(
+        <App />
+    )}
+    const Form = () => (
+        <>
+            <h1>Student's Form</h1>
+            <form onSubmit={handle}>
+                <input ref={inpRef} placeholder="Name" />
+                <input ref={Marks} placeholder="Marks"/>
+                <button>Submit</button>
+            </form>
+        </>
+    )
+
+    const Result = () => (
+        <>
+        <table border="1"> 
+            <tr>
+                <th>Student's Name</th>
+                <th>Marks</th>
+            </tr>
+            
+                {storeData.map((res,i)=>
+                    <tr key={i}>
+                    <td>{res.name}</td>
+                    <td>{res.Marks}</td>
+                </tr>
+                )}
+                
+            
+        
+        </table>        
+        </>
+        
+    )
+    
+
+
+
+    const App = () => (
+        <>
+            <Form />
+            <Result />
+        </>
+    )
+
+    const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+    rootElement.render(
+        <App />
+    )
+</script>
+
+</html>

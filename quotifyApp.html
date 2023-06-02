@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./quotifyApp.css">
+    <title>Quotify App</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+
+let quotes = [];
+let nameRef = React.createRef();
+let quoteRef = React.createRef();
+
+
+const clearInputs = () => {
+        nameRef.current.value = "";
+        quoteRef.current.value = "";
+      };
+
+const handleKey = (e) => {
+  const name = nameRef.current.value;
+  const quote = quoteRef.current.value;
+
+  if(!name || !quote) return;
+  if(e.key !== "Enter") return;
+  
+  quotes.unshift({name, quote});
+  clearInputs();
+  rootElement.render(<App />);
+}
+
+    const App = () => (
+        <>
+        <div className="App">
+            <h2>Quotify</h2>
+            <div>
+                <input ref={nameRef} type="text" placeholder="name" />
+                <input ref={quoteRef} type="text" placeholder="quote" onKeyPress={handleKey}/>
+            </div>
+            <div className="quotes">
+            {quotes.map((q, i) => (
+              <div key={i}>
+                <i>"{q.quote}"</i>
+                <b>~ {q.name}</b>
+              </div>
+            ))}
+          </div>
+        </div>
+        </>
+    );
+
+    const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+    rootElement.render(<App />);
+</script>
+
+</html>
